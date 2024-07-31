@@ -221,6 +221,7 @@ class LocalSearchMixedContext(LocalContextBuilder):
 
         return ("\n\n".join(final_context), final_context_data)
 
+    @trace
     def _build_community_context(
         self,
         selected_entities: list[Entity],
@@ -303,6 +304,7 @@ class LocalSearchMixedContext(LocalContextBuilder):
                     context_data[context_key]["in_context"] = True
         return (str(context_text), context_data)
 
+    @trace
     def _build_text_unit_context(
         self,
         selected_entities: list[Entity],
@@ -382,6 +384,7 @@ class LocalSearchMixedContext(LocalContextBuilder):
                     context_data[context_key]["in_context"] = True
         return (str(context_text), context_data)
 
+    @trace
     def _build_local_context(
         self,
         selected_entities: list[Entity],

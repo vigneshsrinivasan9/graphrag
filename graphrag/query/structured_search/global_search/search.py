@@ -33,6 +33,8 @@ from graphrag.query.structured_search.global_search.reduce_system_prompt import 
     REDUCE_SYSTEM_PROMPT,
 )
 
+from promptflow.tracing import trace
+
 DEFAULT_MAP_LLM_PARAMS = {
     "max_tokens": 1000,
     "temperature": 0.0,
@@ -100,6 +102,7 @@ class GlobalSearch(BaseSearch):
 
         self.semaphore = asyncio.Semaphore(concurrent_coroutines)
 
+    @trace
     async def asearch(
         self,
         query: str,
@@ -154,6 +157,7 @@ class GlobalSearch(BaseSearch):
             prompt_tokens=map_prompt_tokens + reduce_response.prompt_tokens,
         )
 
+    @trace
     def search(
         self,
         query: str,
@@ -163,6 +167,7 @@ class GlobalSearch(BaseSearch):
         """Perform a global search synchronously."""
         return asyncio.run(self.asearch(query, conversation_history))
 
+    @trace
     async def _map_response_single_batch(
         self,
         context_data: str,

@@ -20,6 +20,8 @@ from graphrag.query.structured_search.local_search.system_prompt import (
     LOCAL_SEARCH_SYSTEM_PROMPT,
 )
 
+from promptflow.tracing import trace
+
 DEFAULT_LLM_PARAMS = {
     "max_tokens": 1500,
     "temperature": 0.0,
@@ -53,6 +55,7 @@ class LocalSearch(BaseSearch):
         self.callbacks = callbacks
         self.response_type = response_type
 
+    @trace
     async def asearch(
         self,
         query: str,
@@ -106,6 +109,7 @@ class LocalSearch(BaseSearch):
                 prompt_tokens=num_tokens(search_prompt, self.token_encoder),
             )
 
+    @trace
     def search(
         self,
         query: str,

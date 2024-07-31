@@ -11,11 +11,11 @@ import tiktoken
 
 from graphrag.model import Entity, Relationship, TextUnit
 from graphrag.query.llm.text_utils import num_tokens
+import promptflow.tracing as trace
 
 """
 Contain util functions to build text unit context for the search's system prompt
 """
-
 
 def build_text_unit_context(
     text_units: list[TextUnit],

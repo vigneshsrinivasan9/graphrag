@@ -20,6 +20,7 @@ from graphrag.query.input.loaders.dfs import (
 )
 from graphrag.vector_stores import VectorStoreFactory, VectorStoreType
 from graphrag.vector_stores.lancedb import LanceDBVectorStore
+from promptflow.tracing import trace
 
 from .factories import get_global_search_engine, get_local_search_engine
 from .indexer_adapters import (
@@ -33,6 +34,7 @@ from .indexer_adapters import (
 reporter = PrintProgressReporter("")
 
 
+@trace
 def __get_embedding_description_store(
     entities: list[Entity],
     vector_store_type: str = VectorStoreType.LanceDB,
@@ -79,7 +81,7 @@ def __get_embedding_description_store(
 
     return description_embedding_store
 
-
+@trace
 def run_global_search(
     config_dir: str | None,
     data_dir: str | None,
@@ -120,7 +122,7 @@ def run_global_search(
     reporter.success(f"Global Search Response: {result.response}")
     return result.response
 
-
+@trace
 def run_local_search(
     config_dir: str | None,
     data_dir: str | None,

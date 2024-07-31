@@ -8,7 +8,7 @@ from typing import Any, cast
 import pandas as pd
 
 from graphrag.model import Entity, TextUnit
-
+import promptflow.tracing as trace
 
 def get_candidate_text_units(
     selected_entities: list[Entity],

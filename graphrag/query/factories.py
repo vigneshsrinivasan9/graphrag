@@ -155,6 +155,7 @@ def get_local_search_engine(
     )
 
 
+@trace
 def get_global_search_engine(
     config: GraphRagConfig,
     reports: list[CommunityReport],

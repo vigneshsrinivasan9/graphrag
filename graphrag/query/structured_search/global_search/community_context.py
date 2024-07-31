@@ -17,6 +17,7 @@ from graphrag.query.context_builder.conversation_history import (
 )
 from graphrag.query.structured_search.base import GlobalContextBuilder
 
+from promptflow.tracing import trace
 
 class GlobalCommunityContext(GlobalContextBuilder):
     """GlobalSearch community context builder."""
@@ -33,6 +34,7 @@ class GlobalCommunityContext(GlobalContextBuilder):
         self.token_encoder = token_encoder
         self.random_state = random_state
 
+    @trace
     def build_context(
         self,
         conversation_history: ConversationHistory | None = None,

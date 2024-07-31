@@ -149,7 +149,6 @@ def build_covariates_context(
 
     return current_context_text, record_df
 
-
 def build_relationship_context(
     selected_entities: list[Entity],
     relationships: list[Relationship],
