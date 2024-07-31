@@ -10,6 +10,7 @@ import networkx as nx
 import numpy as np
 from promptflow.tracing import trace
 
+
 @dataclass
 class NodeEmbeddings:
     """Node embeddings class definition."""
