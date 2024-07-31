@@ -31,6 +31,9 @@ from .indexer_adapters import (
     read_indexer_text_units,
 )
 
+from promptflow.tracing import start_trace
+import datetime
+
 reporter = PrintProgressReporter("")
 
 
@@ -91,6 +94,10 @@ def run_global_search(
     query: str,
 ):
     """Run a global search with the given query."""
+
+    collection = "run_global_search_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    start_trace(collection=collection)
+
     data_dir, root_dir, config = _configure_paths_and_settings(
         data_dir, root_dir, config_dir
     )
@@ -132,6 +139,10 @@ def run_local_search(
     query: str,
 ):
     """Run a local search with the given query."""
+
+    collection = "run_local_search_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    start_trace(collection=collection)
+
     data_dir, root_dir, config = _configure_paths_and_settings(
         data_dir, root_dir, config_dir
     )

@@ -33,6 +33,8 @@ from .graph.extractors.graph.prompts import GRAPH_EXTRACTION_PROMPT
 from .graph.extractors.summarize.prompts import SUMMARIZE_PROMPT
 from .init_content import INIT_DOTENV, INIT_YAML
 
+from promptflow.tracing import start_trace
+
 # Ignore warnings from numba
 warnings.filterwarnings("ignore", message=".*NumbaDeprecationWarning.*")
 
@@ -84,7 +86,11 @@ def index_cli(
     cli: bool = False,
 ):
     """Run the pipeline with the given config."""
+    start_trace()
     run_id = resume or time.strftime("%Y%m%d-%H%M%S")
+    collection = "build_graphRAG_index_" + run_id
+    start_trace(collection=collection)
+    
     _enable_logging(root, run_id, verbose)
     progress_reporter = _get_progress_reporter(reporter)
     if init:

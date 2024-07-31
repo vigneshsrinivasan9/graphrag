@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "graphrag-with-trace"
 # Maintainers: do not change the version here manually, use ./scripts/release.sh
-version = "0.3.1"
+version = "0.3.3"
 description = "graphrag-with-trace"
 authors = [
     "huqianghui <qiah@microsoft.com>"
