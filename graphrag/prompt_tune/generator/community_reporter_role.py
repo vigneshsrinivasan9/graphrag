@@ -7,8 +7,9 @@ from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.prompt import (
     GENERATE_COMMUNITY_REPORTER_ROLE_PROMPT,
 )
+from promptflow.tracing import trace
 
-
+@trace
 async def generate_community_reporter_role(
     llm: CompletionLLM, domain: str, persona: str, docs: str | list[str]
 ) -> str:

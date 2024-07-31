@@ -12,6 +12,7 @@ from graphrag.index.llm import load_llm
 from graphrag.index.progress import PrintProgressReporter
 from graphrag.index.progress.types import ProgressReporter
 from graphrag.llm.types.llm_types import CompletionLLM
+from promptflow.tracing import trace
 from graphrag.prompt_tune.generator import (
     MAX_TOKEN_COUNT,
     create_community_summarization_prompt,
@@ -81,7 +82,7 @@ async def prompt_tune(
         min_examples_required,
     )
 
-
+@trace
 async def prompt_tune_with_config(
     root: str,
     config: GraphRagConfig,
@@ -157,7 +158,7 @@ async def prompt_tune_with_config(
         min_examples_required,
     )
 
-
+@trace
 async def generate_indexing_prompts(
     llm: CompletionLLM,
     config: GraphRagConfig,

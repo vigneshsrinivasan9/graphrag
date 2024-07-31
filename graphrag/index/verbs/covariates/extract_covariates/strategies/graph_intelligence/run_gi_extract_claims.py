@@ -20,8 +20,9 @@ from graphrag.index.verbs.covariates.typing import (
 from graphrag.llm import CompletionLLM
 
 from .defaults import MOCK_LLM_RESPONSES
+from promptflow.tracing import trace
 
-
+@trace
 async def run(
     input: str | Iterable[str],
     entity_types: list[str],
@@ -40,7 +41,7 @@ async def run(
         llm, input, entity_types, resolved_entities_map, reporter, strategy_config
     )
 
-
+@trace
 async def _execute(
     llm: CompletionLLM,
     texts: Iterable[str],

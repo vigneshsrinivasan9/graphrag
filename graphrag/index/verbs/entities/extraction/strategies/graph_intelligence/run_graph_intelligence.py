@@ -25,8 +25,10 @@ from graphrag.index.verbs.entities.extraction.strategies.typing import (
 from graphrag.llm import CompletionLLM
 
 from .defaults import DEFAULT_LLM_CONFIG
+from promptflow.tracing import trace
 
 
+@trace
 async def run_gi(
     docs: list[Document],
     entity_types: EntityTypes,
@@ -40,7 +42,7 @@ async def run_gi(
     llm = load_llm("entity_extraction", llm_type, reporter, pipeline_cache, llm_config)
     return await run_extract_entities(llm, docs, entity_types, reporter, args)
 
-
+@trace
 async def run_extract_entities(
     llm: CompletionLLM,
     docs: list[Document],

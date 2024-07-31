@@ -18,6 +18,7 @@ import graphrag.config.defaults as defs
 from graphrag.index.typing import ErrorHandlerFn
 from graphrag.index.utils import clean_str
 from graphrag.llm import CompletionLLM
+from promptflow.tracing import trace
 
 from .prompts import CONTINUE_PROMPT, GRAPH_EXTRACTION_PROMPT, LOOP_PROMPT
 
@@ -92,6 +93,7 @@ class GraphExtractor:
         no = encoding.encode("NO")
         self._loop_args = {"logit_bias": {yes[0]: 100, no[0]: 100}, "max_tokens": 1}
 
+    @trace
     async def __call__(
         self, texts: list[str], prompt_variables: dict[str, Any] | None = None
     ) -> GraphExtractionResult:
@@ -145,6 +147,7 @@ class GraphExtractor:
             source_docs=source_doc_map,
         )
 
+    @trace
     async def _process_document(
         self, text: str, prompt_variables: dict[str, str]
     ) -> str:
@@ -181,6 +184,7 @@ class GraphExtractor:
 
         return results
 
+    @trace
     async def _process_results(
         self,
         results: dict[int, str],

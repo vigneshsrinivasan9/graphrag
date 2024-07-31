@@ -26,7 +26,9 @@ from .defaults import MOCK_RESPONSES
 
 log = logging.getLogger(__name__)
 
+from promptflow.tracing import trace
 
+@trace
 async def run(
     community: str | int,
     input: str,
@@ -46,6 +48,7 @@ async def run(
     return await _run_extractor(llm, community, input, level, args, reporter)
 
 
+@trace
 async def _run_extractor(
     llm: CompletionLLM,
     community: str | int,

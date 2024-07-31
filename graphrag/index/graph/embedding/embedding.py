@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import graspologic as gc
 import networkx as nx
 import numpy as np
-
+from promptflow.tracing import trace
 
 @dataclass
 class NodeEmbeddings:
@@ -17,7 +17,7 @@ class NodeEmbeddings:
     nodes: list[str]
     embeddings: np.ndarray
 
-
+@trace
 def embed_nod2vec(
     graph: nx.Graph | nx.DiGraph,
     dimensions: int = 1536,

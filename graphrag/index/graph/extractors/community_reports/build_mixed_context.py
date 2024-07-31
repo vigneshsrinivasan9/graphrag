@@ -8,8 +8,9 @@ import graphrag.index.graph.extractors.community_reports.schemas as schemas
 from graphrag.query.llm.text_utils import num_tokens
 
 from .sort_context import sort_context
+from promptflow.tracing import trace
 
-
+@trace
 def build_mixed_context(context: list[dict], max_tokens: int) -> str:
     """
     Build parent context by concatenating all sub-communities' contexts.

@@ -24,6 +24,8 @@ from graphrag.llm import (
     create_tpm_rpm_limiters,
 )
 
+from promptflow.tracing import trace
+
 if TYPE_CHECKING:
     from datashaper import VerbCallbacks
 
@@ -35,7 +37,7 @@ log = logging.getLogger(__name__)
 _semaphores: dict[str, asyncio.Semaphore] = {}
 _rate_limiters: dict[str, LLMLimiter] = {}
 
-
+@trace
 def load_llm(
     name: str,
     llm_type: LLMType,
@@ -60,7 +62,7 @@ def load_llm(
     msg = f"Unknown LLM type {llm_type}"
     raise ValueError(msg)
 
-
+@trace
 def load_llm_embeddings(
     name: str,
     llm_type: LLMType,

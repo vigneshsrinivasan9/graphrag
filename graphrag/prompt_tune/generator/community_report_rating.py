@@ -7,8 +7,9 @@ from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.prompt import (
     GENERATE_REPORT_RATING_PROMPT,
 )
+from promptflow.tracing import trace
 
-
+@trace
 async def generate_community_report_rating(
     llm: CompletionLLM, domain: str, persona: str, docs: str | list[str]
 ) -> str:

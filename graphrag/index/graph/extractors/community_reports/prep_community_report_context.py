@@ -19,13 +19,14 @@ from graphrag.index.utils.dataframes import (
     where_column_equals,
 )
 
+from promptflow.tracing import trace
 from .build_mixed_context import build_mixed_context
 from .sort_context import sort_context
 from .utils import set_context_size
 
 log = logging.getLogger(__name__)
 
-
+@trace
 def prep_community_report_context(
     report_df: pd.DataFrame | None,
     community_hierarchy_df: pd.DataFrame,

@@ -14,10 +14,11 @@ from graphrag.prompt_tune.template import (
     UNTYPED_EXAMPLE_EXTRACTION_TEMPLATE,
     UNTYPED_GRAPH_EXTRACTION_PROMPT,
 )
+from promptflow.tracing import trace
 
 ENTITY_EXTRACTION_FILENAME = "entity_extraction.txt"
 
-
+@trace
 def create_entity_extraction_prompt(
     entity_types: str | list[str] | None,
     docs: list[str],

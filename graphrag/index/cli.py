@@ -11,6 +11,7 @@ import sys
 import time
 import warnings
 from pathlib import Path
+from promptflow.tracing import trace
 
 from graphrag.config import (
     create_graphrag_config,
@@ -67,7 +68,7 @@ def redact(input: dict) -> str:
     redacted_dict = redact_dict(input)
     return json.dumps(redacted_dict, indent=4)
 
-
+@trace
 def index_cli(
     root: str,
     init: bool,

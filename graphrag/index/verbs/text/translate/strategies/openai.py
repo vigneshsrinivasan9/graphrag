@@ -15,6 +15,7 @@ from graphrag.index.cache import PipelineCache
 from graphrag.index.llm import load_llm
 from graphrag.index.text_splitting import TokenTextSplitter
 from graphrag.llm import CompletionLLM
+from promptflow.tracing import trace
 
 from .defaults import TRANSLATION_PROMPT as DEFAULT_TRANSLATION_PROMPT
 from .typing import TextTranslationResult
@@ -22,6 +23,7 @@ from .typing import TextTranslationResult
 log = logging.getLogger(__name__)
 
 
+@trace
 async def run(
     input: str | list[str],
     args: dict[str, Any],
@@ -54,7 +56,7 @@ async def run(
         ]
     )
 
-
+@trace
 async def _translate_text(
     text: str,
     language: str,

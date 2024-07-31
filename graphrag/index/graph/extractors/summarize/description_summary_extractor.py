@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from graphrag.index.typing import ErrorHandlerFn
 from graphrag.index.utils.tokens import num_tokens_from_string
 from graphrag.llm import CompletionLLM
+from promptflow.tracing import trace
 
 from .prompts import SUMMARIZE_PROMPT
 
@@ -77,6 +78,7 @@ class SummarizeExtractor:
             description=result or "",
         )
 
+    @trace
     async def _summarize_descriptions(
         self, items: str | tuple[str, str], descriptions: list[str]
     ) -> str:
@@ -118,6 +120,7 @@ class SummarizeExtractor:
 
         return result
 
+    @trace
     async def _summarize_descriptions_with_llm(
         self, items: str | tuple[str, str] | list[str], descriptions: list[str]
     ):

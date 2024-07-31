@@ -14,6 +14,7 @@ from io import BytesIO
 from pathlib import Path
 from string import Template
 from typing import cast
+from promptflow.tracing import trace
 
 import pandas as pd
 from datashaper import (
@@ -66,7 +67,7 @@ from .workflows import (
 
 log = logging.getLogger(__name__)
 
-
+@trace
 async def run_pipeline_with_config(
     config_or_path: PipelineConfig | str,
     workflows: list[PipelineWorkflowReference] | None = None,
@@ -110,20 +111,23 @@ async def run_pipeline_with_config(
     config = _apply_substitutions(config, run_id)
     root_dir = config.root_dir
 
+    @trace
     def _create_storage(config: PipelineStorageConfigTypes | None) -> PipelineStorage:
         return load_storage(
             config
             or PipelineFileStorageConfig(base_dir=str(Path(root_dir or "") / "output"))
         )
-
+    @trace
     def _create_cache(config: PipelineCacheConfigTypes | None) -> PipelineCache:
         return load_cache(config or PipelineMemoryCacheConfig(), root_dir=root_dir)
-
+    
+    @trace
     def _create_reporter(
         config: PipelineReportingConfigTypes | None,
     ) -> WorkflowCallbacks | None:
         return load_pipeline_reporter(config, root_dir) if config else None
-
+    
+    @trace
     async def _create_input(
         config: PipelineInputConfigTypes | None,
     ) -> pd.DataFrame | None:
@@ -131,7 +135,8 @@ async def run_pipeline_with_config(
             return None
 
         return await load_input(config, progress_reporter, root_dir)
-
+    
+    @trace
     def _create_postprocess_steps(
         config: PipelineInputConfigTypes | None,
     ) -> list[PipelineWorkflowStep] | None:
@@ -167,7 +172,7 @@ async def run_pipeline_with_config(
     ):
         yield table
 
-
+@trace
 async def run_pipeline(
     workflows: list[PipelineWorkflowReference],
     dataset: pd.DataFrame,

@@ -5,8 +5,9 @@
 
 from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.prompt import DETECT_LANGUAGE_PROMPT
+from promptflow.tracing import trace
 
-
+@trace
 async def detect_language(llm: CompletionLLM, docs: str | list[str]) -> str:
     """Detect input language to use for GraphRAG prompts.
 

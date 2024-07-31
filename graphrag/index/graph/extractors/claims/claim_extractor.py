@@ -7,6 +7,7 @@ import logging
 import traceback
 from dataclasses import dataclass
 from typing import Any
+from promptflow.tracing import trace
 
 import tiktoken
 
@@ -92,6 +93,7 @@ class ClaimExtractor:
         no = encoding.encode("NO")
         self._loop_args = {"logit_bias": {yes[0]: 100, no[0]: 100}, "max_tokens": 1}
 
+    @trace
     async def __call__(
         self, inputs: dict[str, Any], prompt_variables: dict | None = None
     ) -> ClaimExtractorResult:
@@ -155,6 +157,7 @@ class ClaimExtractor:
         claim["doc_id"] = document_id
         return claim
 
+    @trace
     async def _process_document(
         self, prompt_args: dict, doc, doc_index: int
     ) -> list[dict]:

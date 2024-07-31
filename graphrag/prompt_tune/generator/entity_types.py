@@ -9,8 +9,9 @@ from graphrag.prompt_tune.prompt.entity_types import (
     ENTITY_TYPE_GENERATION_JSON_PROMPT,
     ENTITY_TYPE_GENERATION_PROMPT,
 )
+from promptflow.tracing import trace
 
-
+@trace
 async def generate_entity_types(
     llm: CompletionLLM,
     domain: str,

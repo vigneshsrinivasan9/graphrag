@@ -15,6 +15,7 @@ from graphrag.llm import CompletionLLM
 from .prompts import COMMUNITY_REPORT_PROMPT
 
 log = logging.getLogger(__name__)
+from promptflow.tracing import trace
 
 
 @dataclass
@@ -50,6 +51,7 @@ class CommunityReportsExtractor:
         self._on_error = on_error or (lambda _e, _s, _d: None)
         self._max_report_length = max_report_length or 1500
 
+    @trace
     async def __call__(self, inputs: dict[str, Any]):
         """Call method definition."""
         output = None

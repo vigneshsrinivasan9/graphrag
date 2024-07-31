@@ -8,6 +8,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, NamedTuple, cast
+from promptflow.tracing import trace
 
 from datashaper import Workflow
 
@@ -43,7 +44,7 @@ class LoadWorkflowResult(NamedTuple):
     dependencies: dict[str, list[str]]
     """A dictionary of workflow name to workflow dependencies."""
 
-
+@trace
 def load_workflows(
     workflows_to_load: list[PipelineWorkflowReference],
     additional_verbs: VerbDefinitions | None = None,
@@ -117,7 +118,7 @@ def load_workflows(
     log.info("Workflow Run Order: %s", workflow_run_order)
     return LoadWorkflowResult(workflows=workflows, dependencies=task_graph)
 
-
+@trace
 def create_workflow(
     name: str,
     steps: list[PipelineWorkflowStep] | None = None,

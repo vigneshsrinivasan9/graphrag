@@ -16,8 +16,10 @@ from graphrag.index.verbs.entities.summarize.strategies.typing import (
 from graphrag.llm import CompletionLLM
 
 from .defaults import DEFAULT_LLM_CONFIG
+from promptflow.tracing import trace
 
 
+@trace
 async def run(
     described_items: str | tuple[str, str],
     descriptions: list[str],
@@ -35,7 +37,7 @@ async def run(
         llm, described_items, descriptions, reporter, args
     )
 
-
+@trace
 async def run_summarize_descriptions(
     llm: CompletionLLM,
     items: str | tuple[str, str],

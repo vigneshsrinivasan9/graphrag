@@ -12,10 +12,11 @@ from graphrag.prompt_tune.prompt import (
     ENTITY_RELATIONSHIPS_GENERATION_PROMPT,
     UNTYPED_ENTITY_RELATIONSHIPS_GENERATION_PROMPT,
 )
+from   promptflow.tracing import trace
 
 MAX_EXAMPLES = 5
 
-
+@trace
 async def generate_entity_relationship_examples(
     llm: CompletionLLM,
     persona: str,
