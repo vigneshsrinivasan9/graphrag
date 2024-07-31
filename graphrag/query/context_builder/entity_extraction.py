@@ -12,7 +12,7 @@ from graphrag.query.input.retrieval.entities import (
 )
 from graphrag.query.llm.base import BaseTextEmbedding
 from graphrag.vector_stores import BaseVectorStore
-
+from promptflow.tracing import trace
 
 class EntityVectorStoreKey(str, Enum):
     """Keys used as ids in the entity embedding vectorstores."""
@@ -31,7 +31,7 @@ class EntityVectorStoreKey(str, Enum):
         msg = f"Invalid EntityVectorStoreKey: {value}"
         raise ValueError(msg)
 
-
+@trace
 def map_query_to_entities(
     query: str,
     text_embedding_vectorstore: BaseVectorStore,
@@ -83,7 +83,7 @@ def map_query_to_entities(
         included_entities.extend(get_entity_by_name(all_entities, entity_name))
     return included_entities + matched_entities
 
-
+@trace
 def find_nearest_neighbors_by_graph_embeddings(
     entity_id: str,
     graph_embedding_vectorstore: BaseVectorStore,

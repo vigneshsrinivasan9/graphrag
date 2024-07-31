@@ -8,6 +8,7 @@ from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
 from typing_extensions import Unpack
+from promptflow.tracing import trace
 
 from graphrag.llm.types import (
     LLM,
@@ -48,6 +49,7 @@ class BaseLLM(ABC, LLM[TIn, TOut], Generic[TIn, TOut]):
             return await self._invoke_json(input, **kwargs)
         return await self._invoke(input, **kwargs)
 
+    @trace
     async def _invoke(self, input: TIn, **kwargs: Unpack[LLMInput]) -> LLMOutput[TOut]:
         try:
             output = await self._execute_llm(input, **kwargs)

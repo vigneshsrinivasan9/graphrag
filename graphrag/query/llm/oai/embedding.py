@@ -26,7 +26,7 @@ from graphrag.query.llm.oai.typing import (
 )
 from graphrag.query.llm.text_utils import chunk_text
 from graphrag.query.progress import StatusReporter
-
+from promptflow.tracing import trace
 
 class OpenAIEmbedding(BaseTextEmbedding, OpenAILLMImpl):
     """Wrapper for OpenAI Embedding models."""
@@ -68,6 +68,7 @@ class OpenAIEmbedding(BaseTextEmbedding, OpenAILLMImpl):
         self.token_encoder = tiktoken.get_encoding(self.encoding_name)
         self.retry_error_types = retry_error_types
 
+    @trace
     def embed(self, text: str, **kwargs: Any) -> list[float]:
         """
         Embed text using OpenAI Embedding's sync function.
@@ -97,6 +98,7 @@ class OpenAIEmbedding(BaseTextEmbedding, OpenAILLMImpl):
         chunk_embeddings = chunk_embeddings / np.linalg.norm(chunk_embeddings)
         return chunk_embeddings.tolist()
 
+    @trace
     async def aembed(self, text: str, **kwargs: Any) -> list[float]:
         """
         Embed text using OpenAI Embedding's async function.

@@ -30,6 +30,7 @@ from graphrag.query.structured_search.local_search.mixed_context import (
 )
 from graphrag.query.structured_search.local_search.search import LocalSearch
 from graphrag.vector_stores import BaseVectorStore
+from promptflow.tracing import trace
 
 
 def get_llm(config: GraphRagConfig) -> ChatOpenAI:
@@ -66,7 +67,7 @@ def get_llm(config: GraphRagConfig) -> ChatOpenAI:
         max_retries=config.llm.max_retries,
     )
 
-
+@trace
 def get_text_embedder(config: GraphRagConfig) -> OpenAIEmbedding:
     """Get the LLM client for embeddings."""
     is_azure_client = config.embeddings.llm.type == LLMType.AzureOpenAIEmbedding
@@ -98,7 +99,7 @@ def get_text_embedder(config: GraphRagConfig) -> OpenAIEmbedding:
         max_retries=config.embeddings.llm.max_retries,
     )
 
-
+@trace
 def get_local_search_engine(
     config: GraphRagConfig,
     reports: list[CommunityReport],

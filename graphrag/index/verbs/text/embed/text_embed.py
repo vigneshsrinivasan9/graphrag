@@ -17,7 +17,7 @@ from graphrag.vector_stores import (
     VectorStoreDocument,
     VectorStoreFactory,
 )
-
+from promptflow.tracing import trace
 from .strategies.typing import TextEmbeddingStrategy
 
 log = logging.getLogger(__name__)
@@ -111,7 +111,7 @@ async def text_embed(
         kwargs.get("to", f"{column}_embedding"),
     )
 
-
+@trace
 async def _text_embed_in_memory(
     input: VerbInput,
     callbacks: VerbCallbacks,
@@ -132,7 +132,7 @@ async def _text_embed_in_memory(
     output_df[to] = result.embeddings
     return TableContainer(table=output_df)
 
-
+@trace
 async def _text_embed_with_vector_store(
     input: VerbInput,
     callbacks: VerbCallbacks,
@@ -246,7 +246,7 @@ def _get_collection_name(vector_store_config: dict, embedding_name: str) -> str:
     log.info(msg)
     return collection_name
 
-
+@trace
 def load_strategy(strategy: TextEmbedStrategyType) -> TextEmbeddingStrategy:
     """Load strategy method definition."""
     match strategy:

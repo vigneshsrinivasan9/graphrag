@@ -17,6 +17,7 @@ from graphrag.llm.types import (
 from .openai_configuration import OpenAIConfiguration
 from .types import OpenAIClientTypes
 from .utils import get_completion_llm_args
+from promptflow.tracing import trace
 
 log = logging.getLogger(__name__)
 
@@ -31,6 +32,7 @@ class OpenAICompletionLLM(BaseLLM[CompletionInput, CompletionOutput]):
         self.client = client
         self.configuration = configuration
 
+    @trace
     async def _execute_llm(
         self,
         input: CompletionInput,

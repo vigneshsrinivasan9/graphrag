@@ -13,6 +13,7 @@ from graphrag.llm.types import (
     CompletionOutput,
     LLMInput,
 )
+from promptflow.tracing import trace
 
 log = logging.getLogger(__name__)
 
@@ -29,6 +30,7 @@ class MockCompletionLLM(
         self.responses = responses
         self._on_error = None
 
+    @trace
     async def _execute_llm(
         self,
         input: CompletionInput,

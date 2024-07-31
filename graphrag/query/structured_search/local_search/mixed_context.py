@@ -43,6 +43,7 @@ from graphrag.query.llm.base import BaseTextEmbedding
 from graphrag.query.llm.text_utils import num_tokens
 from graphrag.query.structured_search.base import LocalContextBuilder
 from graphrag.vector_stores import BaseVectorStore
+from promptflow.tracing import trace
 
 log = logging.getLogger(__name__)
 
@@ -84,10 +85,12 @@ class LocalSearchMixedContext(LocalContextBuilder):
         self.token_encoder = token_encoder
         self.embedding_vectorstore_key = embedding_vectorstore_key
 
+    @trace
     def filter_by_entity_keys(self, entity_keys: list[int] | list[str]):
         """Filter entity text embeddings by entity keys."""
         self.entity_text_embeddings.filter_by_id(entity_keys)
 
+    @trace
     def build_context(
         self,
         query: str,

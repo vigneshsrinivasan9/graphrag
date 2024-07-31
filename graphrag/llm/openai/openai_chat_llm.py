@@ -25,6 +25,8 @@ from .utils import (
     try_parse_json_object,
 )
 
+from promptflow.tracing import trace
+
 log = logging.getLogger(__name__)
 
 _MAX_GENERATION_RETRIES = 3
@@ -41,6 +43,7 @@ class OpenAIChatLLM(BaseLLM[CompletionInput, CompletionOutput]):
         self.client = client
         self.configuration = configuration
 
+    @trace
     async def _execute_llm(
         self, input: CompletionInput, **kwargs: Unpack[LLMInput]
     ) -> CompletionOutput | None:
@@ -57,6 +60,7 @@ class OpenAIChatLLM(BaseLLM[CompletionInput, CompletionOutput]):
         )
         return completion.choices[0].message.content
 
+    @trace
     async def _invoke_json(
         self,
         input: CompletionInput,
@@ -89,6 +93,7 @@ class OpenAIChatLLM(BaseLLM[CompletionInput, CompletionOutput]):
             return result
         raise RuntimeError(FAILED_TO_CREATE_JSON_ERROR)
 
+    @trace
     async def _native_json(
         self, input: CompletionInput, **kwargs: Unpack[LLMInput]
     ) -> LLMOutput[CompletionOutput]:
@@ -113,6 +118,7 @@ class OpenAIChatLLM(BaseLLM[CompletionInput, CompletionOutput]):
             history=result.history,
         )
 
+    @trace
     async def _manual_json(
         self, input: CompletionInput, **kwargs: Unpack[LLMInput]
     ) -> LLMOutput[CompletionOutput]:
@@ -138,6 +144,7 @@ class OpenAIChatLLM(BaseLLM[CompletionInput, CompletionOutput]):
                 history=history,
             )
 
+    @trace
     async def _try_clean_json_with_llm(
         self, output: str, **kwargs: Unpack[LLMInput]
     ) -> LLMOutput[CompletionOutput]:

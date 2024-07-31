@@ -14,7 +14,7 @@ from graphrag.llm.types import (
 
 from .openai_configuration import OpenAIConfiguration
 from .types import OpenAIClientTypes
-
+from promptflow.tracing import trace
 
 class OpenAIEmbeddingsLLM(BaseLLM[EmbeddingInput, EmbeddingOutput]):
     """A text-embedding generator LLM."""
@@ -26,6 +26,7 @@ class OpenAIEmbeddingsLLM(BaseLLM[EmbeddingInput, EmbeddingOutput]):
         self.client = client
         self.configuration = configuration
 
+    @trace
     async def _execute_llm(
         self, input: EmbeddingInput, **kwargs: Unpack[LLMInput]
     ) -> EmbeddingOutput | None:

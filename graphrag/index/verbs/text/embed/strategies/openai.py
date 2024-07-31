@@ -16,12 +16,14 @@ from graphrag.index.llm import load_llm_embeddings
 from graphrag.index.text_splitting import TokenTextSplitter
 from graphrag.index.utils import is_null
 from graphrag.llm import EmbeddingLLM, OpenAIConfiguration
+from promptflow.tracing import trace
 
 from .typing import TextEmbeddingResult
 
 log = logging.getLogger(__name__)
 
 
+@trace
 async def run(
     input: list[str],
     callbacks: VerbCallbacks,
@@ -73,7 +75,7 @@ def _get_splitter(
         chunk_size=batch_max_tokens,
     )
 
-
+@trace
 def _get_llm(
     config: OpenAIConfiguration,
     callbacks: VerbCallbacks,
@@ -88,7 +90,7 @@ def _get_llm(
         config.raw_config,
     )
 
-
+@trace
 async def _execute(
     llm: EmbeddingLLM,
     chunks: list[list[str]],

@@ -13,6 +13,8 @@ from graphrag.llm.types import (
     LLMOutput,
 )
 
+from promptflow.tracing import trace    # type: ignore
+
 
 class MockChatLLM(
     BaseLLM[
@@ -39,6 +41,7 @@ class MockChatLLM(
             output=output, history=[*history, {"content": output}]
         )
 
+    @trace
     async def _execute_llm(
         self,
         input: CompletionInput,
