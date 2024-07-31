@@ -6,10 +6,11 @@
 import json
 from dataclasses import dataclass
 
+from promptflow.tracing import trace
+
 from graphrag.index.typing import ErrorHandlerFn
 from graphrag.index.utils.tokens import num_tokens_from_string
 from graphrag.llm import CompletionLLM
-from promptflow.tracing import trace
 
 from .prompts import SUMMARIZE_PROMPT
 
@@ -17,7 +18,6 @@ from .prompts import SUMMARIZE_PROMPT
 DEFAULT_MAX_INPUT_TOKENS = 4_000
 # Max token count for LLM answers
 DEFAULT_MAX_SUMMARY_LENGTH = 500
-
 
 @dataclass
 class SummarizationResult:

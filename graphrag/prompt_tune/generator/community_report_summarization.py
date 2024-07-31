@@ -5,8 +5,9 @@
 
 from pathlib import Path
 
-from graphrag.prompt_tune.template import COMMUNITY_REPORT_SUMMARIZATION_PROMPT
 from promptflow.tracing import trace
+
+from graphrag.prompt_tune.template import COMMUNITY_REPORT_SUMMARIZATION_PROMPT
 
 COMMUNITY_SUMMARIZATION_FILENAME = "community_report.txt"
 

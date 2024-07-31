@@ -7,17 +7,15 @@ from typing import Any
 
 import pandas as pd
 import tiktoken
+from promptflow.tracing import trace
 
 from graphrag.model import CommunityReport, Entity
-from graphrag.query.context_builder.community_context import (
-    build_community_context,
-)
-from graphrag.query.context_builder.conversation_history import (
-    ConversationHistory,
-)
+from graphrag.query.context_builder.community_context import \
+    build_community_context
+from graphrag.query.context_builder.conversation_history import \
+    ConversationHistory
 from graphrag.query.structured_search.base import GlobalContextBuilder
 
-from promptflow.tracing import trace
 
 class GlobalCommunityContext(GlobalContextBuilder):
     """GlobalSearch community context builder."""

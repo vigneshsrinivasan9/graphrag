@@ -7,15 +7,10 @@ import traceback
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
-from typing_extensions import Unpack
 from promptflow.tracing import trace
+from typing_extensions import Unpack
 
-from graphrag.llm.types import (
-    LLM,
-    ErrorHandlerFn,
-    LLMInput,
-    LLMOutput,
-)
+from graphrag.llm.types import LLM, ErrorHandlerFn, LLMInput, LLMOutput
 
 TIn = TypeVar("TIn")
 TOut = TypeVar("TOut")

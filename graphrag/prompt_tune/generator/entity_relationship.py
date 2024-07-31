@@ -6,13 +6,13 @@
 import asyncio
 import json
 
+from promptflow.tracing import trace
+
 from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.prompt import (
     ENTITY_RELATIONSHIPS_GENERATION_JSON_PROMPT,
     ENTITY_RELATIONSHIPS_GENERATION_PROMPT,
-    UNTYPED_ENTITY_RELATIONSHIPS_GENERATION_PROMPT,
-)
-from   promptflow.tracing import trace
+    UNTYPED_ENTITY_RELATIONSHIPS_GENERATION_PROMPT)
 
 MAX_EXAMPLES = 5
 

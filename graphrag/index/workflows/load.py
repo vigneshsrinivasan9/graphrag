@@ -8,32 +8,27 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, NamedTuple, cast
-from promptflow.tracing import trace
 
 from datashaper import Workflow
+from promptflow.tracing import trace
 
-from graphrag.index.errors import (
-    NoWorkflowsDefinedError,
-    UndefinedWorkflowError,
-    UnknownWorkflowError,
-)
+from graphrag.index.errors import (NoWorkflowsDefinedError,
+                                   UndefinedWorkflowError,
+                                   UnknownWorkflowError)
 from graphrag.index.utils import topological_sort
 
 from .default_workflows import default_workflows as _default_workflows
 from .typing import VerbDefinitions, WorkflowDefinitions, WorkflowToRun
 
 if TYPE_CHECKING:
-    from graphrag.index.config import (
-        PipelineWorkflowConfig,
-        PipelineWorkflowReference,
-        PipelineWorkflowStep,
-    )
+    from graphrag.index.config import (PipelineWorkflowConfig,
+                                       PipelineWorkflowReference,
+                                       PipelineWorkflowStep)
 
 anonymous_workflow_count = 0
 
 VerbFn = Callable[..., Any]
 log = logging.getLogger(__name__)
-
 
 class LoadWorkflowResult(NamedTuple):
     """A workflow loading result object."""

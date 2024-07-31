@@ -9,24 +9,18 @@ from typing import Any
 
 import numpy as np
 import tiktoken
-from tenacity import (
-    AsyncRetrying,
-    RetryError,
-    Retrying,
-    retry_if_exception_type,
-    stop_after_attempt,
-    wait_exponential_jitter,
-)
+from promptflow.tracing import trace
+from tenacity import (AsyncRetrying, RetryError, Retrying,
+                      retry_if_exception_type, stop_after_attempt,
+                      wait_exponential_jitter)
 
 from graphrag.query.llm.base import BaseTextEmbedding
 from graphrag.query.llm.oai.base import OpenAILLMImpl
-from graphrag.query.llm.oai.typing import (
-    OPENAI_RETRY_ERROR_TYPES,
-    OpenaiApiType,
-)
+from graphrag.query.llm.oai.typing import (OPENAI_RETRY_ERROR_TYPES,
+                                           OpenaiApiType)
 from graphrag.query.llm.text_utils import chunk_text
 from graphrag.query.progress import StatusReporter
-from promptflow.tracing import trace
+
 
 class OpenAIEmbedding(BaseTextEmbedding, OpenAILLMImpl):
     """Wrapper for OpenAI Embedding models."""

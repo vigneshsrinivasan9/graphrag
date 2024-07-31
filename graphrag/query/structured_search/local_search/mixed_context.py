@@ -7,43 +7,28 @@ from typing import Any
 
 import pandas as pd
 import tiktoken
+from promptflow.tracing import trace
 
-from graphrag.model import (
-    CommunityReport,
-    Covariate,
-    Entity,
-    Relationship,
-    TextUnit,
-)
-from graphrag.query.context_builder.community_context import (
-    build_community_context,
-)
-from graphrag.query.context_builder.conversation_history import (
-    ConversationHistory,
-)
+from graphrag.model import (CommunityReport, Covariate, Entity, Relationship,
+                            TextUnit)
+from graphrag.query.context_builder.community_context import \
+    build_community_context
+from graphrag.query.context_builder.conversation_history import \
+    ConversationHistory
 from graphrag.query.context_builder.entity_extraction import (
-    EntityVectorStoreKey,
-    map_query_to_entities,
-)
+    EntityVectorStoreKey, map_query_to_entities)
 from graphrag.query.context_builder.local_context import (
-    build_covariates_context,
-    build_entity_context,
-    build_relationship_context,
-    get_candidate_context,
-)
+    build_covariates_context, build_entity_context, build_relationship_context,
+    get_candidate_context)
 from graphrag.query.context_builder.source_context import (
-    build_text_unit_context,
-    count_relationships,
-)
-from graphrag.query.input.retrieval.community_reports import (
-    get_candidate_communities,
-)
+    build_text_unit_context, count_relationships)
+from graphrag.query.input.retrieval.community_reports import \
+    get_candidate_communities
 from graphrag.query.input.retrieval.text_units import get_candidate_text_units
 from graphrag.query.llm.base import BaseTextEmbedding
 from graphrag.query.llm.text_utils import num_tokens
 from graphrag.query.structured_search.base import LocalContextBuilder
 from graphrag.vector_stores import BaseVectorStore
-from promptflow.tracing import trace
 
 log = logging.getLogger(__name__)
 

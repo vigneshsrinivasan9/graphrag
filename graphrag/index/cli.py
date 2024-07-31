@@ -11,18 +11,14 @@ import sys
 import time
 import warnings
 from pathlib import Path
-from promptflow.tracing import trace
 
-from graphrag.config import (
-    create_graphrag_config,
-)
+from promptflow.tracing import start_trace, trace
+
+from graphrag.config import create_graphrag_config
 from graphrag.index import PipelineConfig, create_pipeline_config
 from graphrag.index.cache import NoopPipelineCache
-from graphrag.index.progress import (
-    NullProgressReporter,
-    PrintProgressReporter,
-    ProgressReporter,
-)
+from graphrag.index.progress import (NullProgressReporter,
+                                     PrintProgressReporter, ProgressReporter)
 from graphrag.index.progress.rich import RichProgressReporter
 from graphrag.index.run import run_pipeline_with_config
 
@@ -33,13 +29,10 @@ from .graph.extractors.graph.prompts import GRAPH_EXTRACTION_PROMPT
 from .graph.extractors.summarize.prompts import SUMMARIZE_PROMPT
 from .init_content import INIT_DOTENV, INIT_YAML
 
-from promptflow.tracing import start_trace
-
 # Ignore warnings from numba
 warnings.filterwarnings("ignore", message=".*NumbaDeprecationWarning.*")
 
 log = logging.getLogger(__name__)
-
 
 def redact(input: dict) -> str:
     """Sanitize the config json."""
@@ -90,7 +83,7 @@ def index_cli(
     run_id = resume or time.strftime("%Y%m%d-%H%M%S")
     collection = "build_graphRAG_index_" + run_id
     start_trace(collection=collection)
-    
+
     _enable_logging(root, run_id, verbose)
     progress_reporter = _get_progress_reporter(reporter)
     if init:

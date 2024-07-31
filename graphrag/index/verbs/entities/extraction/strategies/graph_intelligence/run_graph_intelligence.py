@@ -5,27 +5,20 @@
 
 import networkx as nx
 from datashaper import VerbCallbacks
+from promptflow.tracing import trace
 
 import graphrag.config.defaults as defs
 from graphrag.config.enums import LLMType
 from graphrag.index.cache import PipelineCache
 from graphrag.index.graph.extractors.graph import GraphExtractor
 from graphrag.index.llm import load_llm
-from graphrag.index.text_splitting import (
-    NoopTextSplitter,
-    TextSplitter,
-    TokenTextSplitter,
-)
+from graphrag.index.text_splitting import (NoopTextSplitter, TextSplitter,
+                                           TokenTextSplitter)
 from graphrag.index.verbs.entities.extraction.strategies.typing import (
-    Document,
-    EntityExtractionResult,
-    EntityTypes,
-    StrategyConfig,
-)
+    Document, EntityExtractionResult, EntityTypes, StrategyConfig)
 from graphrag.llm import CompletionLLM
 
 from .defaults import DEFAULT_LLM_CONFIG
-from promptflow.tracing import trace
 
 
 @trace

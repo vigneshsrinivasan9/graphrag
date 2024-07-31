@@ -3,11 +3,11 @@
 
 """Generate a community reporter role for community summarization."""
 
-from graphrag.llm.types.llm_types import CompletionLLM
-from graphrag.prompt_tune.prompt import (
-    GENERATE_COMMUNITY_REPORTER_ROLE_PROMPT,
-)
 from promptflow.tracing import trace
+
+from graphrag.llm.types.llm_types import CompletionLLM
+from graphrag.prompt_tune.prompt import GENERATE_COMMUNITY_REPORTER_ROLE_PROMPT
+
 
 @trace
 async def generate_community_reporter_role(

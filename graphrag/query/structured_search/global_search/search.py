@@ -12,28 +12,21 @@ from typing import Any
 
 import pandas as pd
 import tiktoken
+from promptflow.tracing import trace
 
 from graphrag.index.utils.json import clean_up_json
 from graphrag.query.context_builder.builders import GlobalContextBuilder
-from graphrag.query.context_builder.conversation_history import (
-    ConversationHistory,
-)
+from graphrag.query.context_builder.conversation_history import \
+    ConversationHistory
 from graphrag.query.llm.base import BaseLLM
 from graphrag.query.llm.text_utils import num_tokens
 from graphrag.query.structured_search.base import BaseSearch, SearchResult
-from graphrag.query.structured_search.global_search.callbacks import (
-    GlobalSearchLLMCallback,
-)
-from graphrag.query.structured_search.global_search.map_system_prompt import (
-    MAP_SYSTEM_PROMPT,
-)
+from graphrag.query.structured_search.global_search.callbacks import \
+    GlobalSearchLLMCallback
+from graphrag.query.structured_search.global_search.map_system_prompt import \
+    MAP_SYSTEM_PROMPT
 from graphrag.query.structured_search.global_search.reduce_system_prompt import (
-    GENERAL_KNOWLEDGE_INSTRUCTION,
-    NO_DATA_ANSWER,
-    REDUCE_SYSTEM_PROMPT,
-)
-
-from promptflow.tracing import trace
+    GENERAL_KNOWLEDGE_INSTRUCTION, NO_DATA_ANSWER, REDUCE_SYSTEM_PROMPT)
 
 DEFAULT_MAP_LLM_PARAMS = {
     "max_tokens": 1000,

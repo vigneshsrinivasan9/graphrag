@@ -3,9 +3,11 @@
 
 """Domain generation for GraphRAG prompts."""
 
+from promptflow.tracing import trace
+
 from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.prompt.domain import GENERATE_DOMAIN_PROMPT
-from promptflow.tracing import trace
+
 
 @trace
 async def generate_domain(llm: CompletionLLM, docs: str | list[str]) -> str:

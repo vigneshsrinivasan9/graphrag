@@ -3,18 +3,15 @@
 
 """The EmbeddingsLLM class."""
 
+from promptflow.tracing import trace
 from typing_extensions import Unpack
 
 from graphrag.llm.base import BaseLLM
-from graphrag.llm.types import (
-    EmbeddingInput,
-    EmbeddingOutput,
-    LLMInput,
-)
+from graphrag.llm.types import EmbeddingInput, EmbeddingOutput, LLMInput
 
 from .openai_configuration import OpenAIConfiguration
 from .types import OpenAIClientTypes
-from promptflow.tracing import trace
+
 
 class OpenAIEmbeddingsLLM(BaseLLM[EmbeddingInput, EmbeddingOutput]):
     """A text-embedding generator LLM."""

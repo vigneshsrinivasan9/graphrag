@@ -5,16 +5,15 @@
 
 from pathlib import Path
 
+from promptflow.tracing import trace
+
 import graphrag.config.defaults as defs
 from graphrag.index.utils.tokens import num_tokens_from_string
-from graphrag.prompt_tune.template import (
-    EXAMPLE_EXTRACTION_TEMPLATE,
-    GRAPH_EXTRACTION_JSON_PROMPT,
-    GRAPH_EXTRACTION_PROMPT,
-    UNTYPED_EXAMPLE_EXTRACTION_TEMPLATE,
-    UNTYPED_GRAPH_EXTRACTION_PROMPT,
-)
-from promptflow.tracing import trace
+from graphrag.prompt_tune.template import (EXAMPLE_EXTRACTION_TEMPLATE,
+                                           GRAPH_EXTRACTION_JSON_PROMPT,
+                                           GRAPH_EXTRACTION_PROMPT,
+                                           UNTYPED_EXAMPLE_EXTRACTION_TEMPLATE,
+                                           UNTYPED_GRAPH_EXTRACTION_PROMPT)
 
 ENTITY_EXTRACTION_FILENAME = "entity_extraction.txt"
 

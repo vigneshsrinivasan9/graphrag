@@ -10,14 +10,12 @@ from typing import Any, cast
 import numpy as np
 import pandas as pd
 from datashaper import TableContainer, VerbCallbacks, VerbInput, verb
+from promptflow.tracing import trace
 
 from graphrag.index.cache import PipelineCache
-from graphrag.vector_stores import (
-    BaseVectorStore,
-    VectorStoreDocument,
-    VectorStoreFactory,
-)
-from promptflow.tracing import trace
+from graphrag.vector_stores import (BaseVectorStore, VectorStoreDocument,
+                                    VectorStoreFactory)
+
 from .strategies.typing import TextEmbeddingStrategy
 
 log = logging.getLogger(__name__)
@@ -25,7 +23,6 @@ log = logging.getLogger(__name__)
 # Per Azure OpenAI Limits
 # https://learn.microsoft.com/en-us/azure/ai-services/openai/reference
 DEFAULT_EMBEDDING_BATCH_SIZE = 500
-
 
 class TextEmbedStrategyType(str, Enum):
     """TextEmbedStrategyType class definition."""

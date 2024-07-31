@@ -4,19 +4,17 @@
 """A module containing run_gi,  run_resolve_entities and _create_text_list_splitter methods to run graph intelligence."""
 
 from datashaper import VerbCallbacks
+from promptflow.tracing import trace
 
 from graphrag.config.enums import LLMType
 from graphrag.index.cache import PipelineCache
 from graphrag.index.graph.extractors.summarize import SummarizeExtractor
 from graphrag.index.llm import load_llm
 from graphrag.index.verbs.entities.summarize.strategies.typing import (
-    StrategyConfig,
-    SummarizedDescriptionResult,
-)
+    StrategyConfig, SummarizedDescriptionResult)
 from graphrag.llm import CompletionLLM
 
 from .defaults import DEFAULT_LLM_CONFIG
-from promptflow.tracing import trace
 
 
 @trace

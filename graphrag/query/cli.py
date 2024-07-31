@@ -3,36 +3,25 @@
 
 """Command line interface for the query module."""
 
+import datetime
 import os
 from pathlib import Path
 from typing import cast
 
 import pandas as pd
+from promptflow.tracing import start_trace, trace
 
-from graphrag.config import (
-    GraphRagConfig,
-    create_graphrag_config,
-)
+from graphrag.config import GraphRagConfig, create_graphrag_config
 from graphrag.index.progress import PrintProgressReporter
 from graphrag.model.entity import Entity
-from graphrag.query.input.loaders.dfs import (
-    store_entity_semantic_embeddings,
-)
+from graphrag.query.input.loaders.dfs import store_entity_semantic_embeddings
 from graphrag.vector_stores import VectorStoreFactory, VectorStoreType
 from graphrag.vector_stores.lancedb import LanceDBVectorStore
-from promptflow.tracing import trace
 
 from .factories import get_global_search_engine, get_local_search_engine
-from .indexer_adapters import (
-    read_indexer_covariates,
-    read_indexer_entities,
-    read_indexer_relationships,
-    read_indexer_reports,
-    read_indexer_text_units,
-)
-
-from promptflow.tracing import start_trace
-import datetime
+from .indexer_adapters import (read_indexer_covariates, read_indexer_entities,
+                               read_indexer_relationships,
+                               read_indexer_reports, read_indexer_text_units)
 
 reporter = PrintProgressReporter("")
 

@@ -9,22 +9,14 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING, Any
 
-from graphrag.config.enums import LLMType
-from graphrag.llm import (
-    CompletionLLM,
-    EmbeddingLLM,
-    LLMCache,
-    LLMLimiter,
-    MockCompletionLLM,
-    OpenAIConfiguration,
-    create_openai_chat_llm,
-    create_openai_client,
-    create_openai_completion_llm,
-    create_openai_embedding_llm,
-    create_tpm_rpm_limiters,
-)
-
 from promptflow.tracing import trace
+
+from graphrag.config.enums import LLMType
+from graphrag.llm import (CompletionLLM, EmbeddingLLM, LLMCache, LLMLimiter,
+                          MockCompletionLLM, OpenAIConfiguration,
+                          create_openai_chat_llm, create_openai_client,
+                          create_openai_completion_llm,
+                          create_openai_embedding_llm, create_tpm_rpm_limiters)
 
 if TYPE_CHECKING:
     from datashaper import VerbCallbacks
@@ -272,7 +264,6 @@ def _create_openai_completion_llm(
     return create_openai_completion_llm(
         client, configuration, cache, limiter, semaphore, on_error=on_error
     )
-
 
 def _create_openai_embeddings_llm(
     configuration: OpenAIConfiguration,

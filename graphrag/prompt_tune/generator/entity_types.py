@@ -3,13 +3,13 @@
 
 """Entity type generation module for fine-tuning."""
 
+from promptflow.tracing import trace
+
 from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.generator.defaults import DEFAULT_TASK
 from graphrag.prompt_tune.prompt.entity_types import (
-    ENTITY_TYPE_GENERATION_JSON_PROMPT,
-    ENTITY_TYPE_GENERATION_PROMPT,
-)
-from promptflow.tracing import trace
+    ENTITY_TYPE_GENERATION_JSON_PROMPT, ENTITY_TYPE_GENERATION_PROMPT)
+
 
 @trace
 async def generate_entity_types(

@@ -7,19 +7,15 @@ import logging
 import traceback
 from dataclasses import dataclass
 from typing import Any
-from promptflow.tracing import trace
 
 import tiktoken
+from promptflow.tracing import trace
 
 import graphrag.config.defaults as defs
 from graphrag.index.typing import ErrorHandlerFn
 from graphrag.llm import CompletionLLM
 
-from .prompts import (
-    CLAIM_EXTRACTION_PROMPT,
-    CONTINUE_PROMPT,
-    LOOP_PROMPT,
-)
+from .prompts import CLAIM_EXTRACTION_PROMPT, CONTINUE_PROMPT, LOOP_PROMPT
 
 DEFAULT_TUPLE_DELIMITER = "<|>"
 DEFAULT_RECORD_DELIMITER = "##"

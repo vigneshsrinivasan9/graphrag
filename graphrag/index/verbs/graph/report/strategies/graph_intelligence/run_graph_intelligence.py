@@ -8,25 +8,21 @@ import logging
 import traceback
 
 from datashaper import VerbCallbacks
+from promptflow.tracing import trace
 
 from graphrag.config.enums import LLMType
 from graphrag.index.cache import PipelineCache
-from graphrag.index.graph.extractors.community_reports import (
-    CommunityReportsExtractor,
-)
+from graphrag.index.graph.extractors.community_reports import \
+    CommunityReportsExtractor
 from graphrag.index.llm import load_llm
 from graphrag.index.utils.rate_limiter import RateLimiter
 from graphrag.index.verbs.graph.report.strategies.typing import (
-    CommunityReport,
-    StrategyConfig,
-)
+    CommunityReport, StrategyConfig)
 from graphrag.llm import CompletionLLM
 
 from .defaults import MOCK_RESPONSES
 
 log = logging.getLogger(__name__)
-
-from promptflow.tracing import trace
 
 @trace
 async def run(

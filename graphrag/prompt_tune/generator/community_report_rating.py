@@ -3,11 +3,11 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.llm.types.llm_types import CompletionLLM
-from graphrag.prompt_tune.prompt import (
-    GENERATE_REPORT_RATING_PROMPT,
-)
 from promptflow.tracing import trace
+
+from graphrag.llm.types.llm_types import CompletionLLM
+from graphrag.prompt_tune.prompt import GENERATE_REPORT_RATING_PROMPT
+
 
 @trace
 async def generate_community_report_rating(

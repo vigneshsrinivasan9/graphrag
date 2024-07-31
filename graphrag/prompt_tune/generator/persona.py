@@ -3,10 +3,12 @@
 
 """Persona generating module for fine-tuning GraphRAG prompts."""
 
+from promptflow.tracing import trace
+
 from graphrag.llm.types.llm_types import CompletionLLM
 from graphrag.prompt_tune.generator.defaults import DEFAULT_TASK
 from graphrag.prompt_tune.prompt import GENERATE_PERSONA_PROMPT
-from promptflow.tracing import trace
+
 
 @trace
 async def generate_persona(

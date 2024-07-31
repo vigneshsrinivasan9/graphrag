@@ -5,22 +5,17 @@
 
 import logging
 
+from promptflow.tracing import trace
 from typing_extensions import Unpack
 
 from graphrag.llm.base import BaseLLM
-from graphrag.llm.types import (
-    CompletionInput,
-    CompletionOutput,
-    LLMInput,
-)
+from graphrag.llm.types import CompletionInput, CompletionOutput, LLMInput
 
 from .openai_configuration import OpenAIConfiguration
 from .types import OpenAIClientTypes
 from .utils import get_completion_llm_args
-from promptflow.tracing import trace
 
 log = logging.getLogger(__name__)
-
 
 class OpenAICompletionLLM(BaseLLM[CompletionInput, CompletionOutput]):
     """A text-completion based LLM."""

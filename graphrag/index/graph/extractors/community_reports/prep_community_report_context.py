@@ -7,19 +7,13 @@ import logging
 from typing import cast
 
 import pandas as pd
+from promptflow.tracing import trace
 
 import graphrag.index.graph.extractors.community_reports.schemas as schemas
-from graphrag.index.utils.dataframes import (
-    antijoin,
-    drop_columns,
-    join,
-    select,
-    transform_series,
-    union,
-    where_column_equals,
-)
+from graphrag.index.utils.dataframes import (antijoin, drop_columns, join,
+                                             select, transform_series, union,
+                                             where_column_equals)
 
-from promptflow.tracing import trace
 from .build_mixed_context import build_mixed_context
 from .sort_context import sort_context
 from .utils import set_context_size

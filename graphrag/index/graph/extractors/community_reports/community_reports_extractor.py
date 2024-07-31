@@ -25,7 +25,6 @@ class CommunityReportsResult:
     output: str
     structured_output: dict
 
-
 class CommunityReportsExtractor:
     """Community reports extractor class definition."""
 

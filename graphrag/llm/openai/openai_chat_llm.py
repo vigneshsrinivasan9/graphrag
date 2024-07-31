@@ -6,26 +6,18 @@
 import logging
 from json import JSONDecodeError
 
+from promptflow.tracing import trace
 from typing_extensions import Unpack
 
 from graphrag.llm.base import BaseLLM
-from graphrag.llm.types import (
-    CompletionInput,
-    CompletionOutput,
-    LLMInput,
-    LLMOutput,
-)
+from graphrag.llm.types import (CompletionInput, CompletionOutput, LLMInput,
+                                LLMOutput)
 
 from ._json import clean_up_json
 from ._prompts import JSON_CHECK_PROMPT
 from .openai_configuration import OpenAIConfiguration
 from .types import OpenAIClientTypes
-from .utils import (
-    get_completion_llm_args,
-    try_parse_json_object,
-)
-
-from promptflow.tracing import trace
+from .utils import get_completion_llm_args, try_parse_json_object
 
 log = logging.getLogger(__name__)
 

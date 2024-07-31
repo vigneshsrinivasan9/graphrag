@@ -15,7 +15,6 @@ ExtractedEntity = dict[str, Any]
 StrategyConfig = dict[str, Any]
 EntityTypes = list[str]
 
-
 @dataclass
 class Document:
     """Document class definition."""

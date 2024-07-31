@@ -5,8 +5,9 @@
 
 from pathlib import Path
 
-from graphrag.prompt_tune.template import ENTITY_SUMMARIZATION_PROMPT
 from promptflow.tracing import trace
+
+from graphrag.prompt_tune.template import ENTITY_SUMMARIZATION_PROMPT
 
 ENTITY_SUMMARIZATION_FILENAME = "summarize_descriptions.txt"
 

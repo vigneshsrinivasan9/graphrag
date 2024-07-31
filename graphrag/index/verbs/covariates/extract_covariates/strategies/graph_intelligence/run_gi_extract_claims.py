@@ -7,20 +7,19 @@ from collections.abc import Iterable
 from typing import Any
 
 from datashaper import VerbCallbacks
+from promptflow.tracing import trace
 
 import graphrag.config.defaults as defs
 from graphrag.config.enums import LLMType
 from graphrag.index.cache import PipelineCache
 from graphrag.index.graph.extractors.claims import ClaimExtractor
 from graphrag.index.llm import load_llm
-from graphrag.index.verbs.covariates.typing import (
-    Covariate,
-    CovariateExtractionResult,
-)
+from graphrag.index.verbs.covariates.typing import (Covariate,
+                                                    CovariateExtractionResult)
 from graphrag.llm import CompletionLLM
 
 from .defaults import MOCK_LLM_RESPONSES
-from promptflow.tracing import trace
+
 
 @trace
 async def run(

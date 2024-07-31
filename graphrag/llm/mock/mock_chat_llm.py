@@ -3,17 +3,12 @@
 
 """A mock ChatLLM that returns the given responses."""
 
+from promptflow.tracing import trace  # type: ignore
 from typing_extensions import Unpack
 
 from graphrag.llm.base import BaseLLM
-from graphrag.llm.types import (
-    CompletionInput,
-    CompletionOutput,
-    LLMInput,
-    LLMOutput,
-)
-
-from promptflow.tracing import trace    # type: ignore
+from graphrag.llm.types import (CompletionInput, CompletionOutput, LLMInput,
+                                LLMOutput)
 
 
 class MockChatLLM(

@@ -5,14 +5,14 @@
 
 from enum import Enum
 
+from promptflow.tracing import trace
+
 from graphrag.model import Entity, Relationship
-from graphrag.query.input.retrieval.entities import (
-    get_entity_by_key,
-    get_entity_by_name,
-)
+from graphrag.query.input.retrieval.entities import (get_entity_by_key,
+                                                     get_entity_by_name)
 from graphrag.query.llm.base import BaseTextEmbedding
 from graphrag.vector_stores import BaseVectorStore
-from promptflow.tracing import trace
+
 
 class EntityVectorStoreKey(str, Enum):
     """Keys used as ids in the entity embedding vectorstores."""

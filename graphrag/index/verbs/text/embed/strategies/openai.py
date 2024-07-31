@@ -9,6 +9,7 @@ from typing import Any
 
 import numpy as np
 from datashaper import ProgressTicker, VerbCallbacks, progress_ticker
+from promptflow.tracing import trace
 
 import graphrag.config.defaults as defs
 from graphrag.index.cache import PipelineCache
@@ -16,12 +17,10 @@ from graphrag.index.llm import load_llm_embeddings
 from graphrag.index.text_splitting import TokenTextSplitter
 from graphrag.index.utils import is_null
 from graphrag.llm import EmbeddingLLM, OpenAIConfiguration
-from promptflow.tracing import trace
 
 from .typing import TextEmbeddingResult
 
 log = logging.getLogger(__name__)
-
 
 @trace
 async def run(

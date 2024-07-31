@@ -8,14 +8,8 @@ from enum import Enum
 from typing import Any, cast
 
 import pandas as pd
-from datashaper import (
-    AsyncType,
-    TableContainer,
-    VerbCallbacks,
-    VerbInput,
-    derive_from_rows,
-    verb,
-)
+from datashaper import (AsyncType, TableContainer, VerbCallbacks, VerbInput,
+                        derive_from_rows, verb)
 
 from graphrag.index.bootstrap import bootstrap
 from graphrag.index.cache import PipelineCache
@@ -23,7 +17,6 @@ from graphrag.index.cache import PipelineCache
 from .strategies.typing import Document, EntityExtractStrategy
 
 log = logging.getLogger(__name__)
-
 
 class ExtractEntityStrategyType(str, Enum):
     """ExtractEntityStrategyType class definition."""

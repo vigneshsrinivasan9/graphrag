@@ -5,32 +5,23 @@
 
 import tiktoken
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from promptflow.tracing import trace
 
-from graphrag.config import (
-    GraphRagConfig,
-    LLMType,
-)
-from graphrag.model import (
-    CommunityReport,
-    Covariate,
-    Entity,
-    Relationship,
-    TextUnit,
-)
-from graphrag.query.context_builder.entity_extraction import EntityVectorStoreKey
+from graphrag.config import GraphRagConfig, LLMType
+from graphrag.model import (CommunityReport, Covariate, Entity, Relationship,
+                            TextUnit)
+from graphrag.query.context_builder.entity_extraction import \
+    EntityVectorStoreKey
 from graphrag.query.llm.oai.chat_openai import ChatOpenAI
 from graphrag.query.llm.oai.embedding import OpenAIEmbedding
 from graphrag.query.llm.oai.typing import OpenaiApiType
-from graphrag.query.structured_search.global_search.community_context import (
-    GlobalCommunityContext,
-)
+from graphrag.query.structured_search.global_search.community_context import \
+    GlobalCommunityContext
 from graphrag.query.structured_search.global_search.search import GlobalSearch
-from graphrag.query.structured_search.local_search.mixed_context import (
-    LocalSearchMixedContext,
-)
+from graphrag.query.structured_search.local_search.mixed_context import \
+    LocalSearchMixedContext
 from graphrag.query.structured_search.local_search.search import LocalSearch
 from graphrag.vector_stores import BaseVectorStore
-from promptflow.tracing import trace
 
 
 def get_llm(config: GraphRagConfig) -> ChatOpenAI:
