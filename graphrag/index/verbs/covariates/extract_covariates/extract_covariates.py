@@ -17,8 +17,6 @@ from graphrag.index.verbs.covariates.typing import (Covariate,
                                                     CovariateExtractStrategy)
 
 log = logging.getLogger(__name__)
-
-
 class ExtractClaimsStrategyType(str, Enum):
     """ExtractClaimsStrategyType class definition."""
 
